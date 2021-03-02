@@ -2,7 +2,7 @@
  * @Author: Cookie
  * @Date: 2021-02-27 16:14:15
  * @LastEditors: Cookie
- * @LastEditTime: 2021-03-02 14:52:13
+ * @LastEditTime: 2021-03-02 21:30:18
  * @Description:
  */
 
@@ -26,7 +26,7 @@ export type SizeType = "small" | "middle" | "large" | undefined;
 
 interface BaseProps {
   className?: string;
-  style?: object;
+  style?: React.HTMLProps<HTMLStyleElement>;
 }
 
 interface BaseButtonProps {
@@ -61,6 +61,7 @@ const Button = (props: IButtonProps) => {
     className,
     children,
     loading,
+    style: customStyle
   } = props;
 
   const [innerLoading, setLoading] = React.useState<Loading>(false);
@@ -109,7 +110,7 @@ const Button = (props: IButtonProps) => {
   const childrenNode = children || null;
 
   return (
-    <button type={htmlType} className={classes} onClick={handleClick}>
+    <button type={htmlType} className={classes} onClick={handleClick} style={customStyle}>
       {innerLoading && LoadingNode}
       {childrenNode}
     </button>
