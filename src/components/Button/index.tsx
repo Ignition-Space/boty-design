@@ -2,27 +2,32 @@
  * @Author: Cookie
  * @Date: 2021-02-27 16:14:15
  * @LastEditors: Cookie
- * @LastEditTime: 2021-02-27 22:42:38
+ * @LastEditTime: 2021-03-02 14:52:13
  * @Description:
  */
 
-import React, { useState } from 'react'
-import classNames from 'classnames';
-import LoadingIcon from '../assets/images/loading.png'
-import { tuple } from '../utils/types'
+import React, { useState } from "react";
+import classNames from "classnames";
+import LoadingIcon from "../assets/images/loading.png";
+import { tuple } from "../utils/types";
 
-import './index.less'
+import "./index.less";
 
-const ButtonTypes = tuple('default', 'primary', 'ghost', 'dashed', 'link', 'text');
+const ButtonTypes = tuple("default", "primary", "ghost", "dashed", "link", "text");
 export type ButtonType = typeof ButtonTypes[number];
 
-const ButtonShapes = tuple('circle', 'round');
+const ButtonShapes = tuple("circle", "round");
 export type ButtonShape = typeof ButtonShapes[number];
 
-const ButtonHTMLTypes = tuple('submit', 'button', 'reset');
+const ButtonHTMLTypes = tuple("submit", "button", "reset");
 export type ButtonHTMLType = typeof ButtonHTMLTypes[number];
 
-export type SizeType = 'small' | 'middle' | 'large' | undefined;
+export type SizeType = "small" | "middle" | "large" | undefined;
+
+interface BaseProps {
+  className?: string;
+  style?: object;
+}
 
 interface BaseButtonProps {
   type?: ButtonType;
@@ -31,7 +36,6 @@ interface BaseButtonProps {
   size?: SizeType;
   loading?: boolean | { delay?: number };
   prefixCls?: string;
-  className?: string;
   danger?: boolean;
   href?: string;
   htmlType?: ButtonHTMLType;
@@ -39,17 +43,17 @@ interface BaseButtonProps {
 }
 
 interface INativeButtonProps {
-  disabled?: boolean
+  disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
-export type IButtonProps = BaseButtonProps & INativeButtonProps
+export type IButtonProps = BaseProps & BaseButtonProps & INativeButtonProps;
 
 type Loading = number | boolean;
 
 const Button = (props: IButtonProps) => {
   const {
-    htmlType = 'button' as IButtonProps['htmlType'],
+    htmlType = "button" as IButtonProps["htmlType"],
     prefixCls = "boty-btn",
     type,
     shape,
@@ -61,27 +65,26 @@ const Button = (props: IButtonProps) => {
 
   const [innerLoading, setLoading] = React.useState<Loading>(false);
 
-  let sizeCls = '';
+  let sizeCls = "";
 
   switch (customizeSize) {
-    case 'large':
-      sizeCls = 'lg';
+    case "large":
+      sizeCls = "lg";
       break;
-    case 'small':
-      sizeCls = 'sm';
+    case "small":
+      sizeCls = "sm";
       break;
     default:
       break;
   }
 
-
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => {
     const { onClick } = props;
-    if (innerLoading) return
+    if (innerLoading) return;
     if (loading) {
-      setLoading(true)
+      setLoading(true);
       await onClick?.(e);
-      setLoading(false)
+      setLoading(false);
     } else {
       onClick?.(e);
     }
@@ -94,21 +97,23 @@ const Button = (props: IButtonProps) => {
       [`${prefixCls}-${shape}`]: shape,
       [`${prefixCls}-${sizeCls}`]: sizeCls,
     },
-    className,
+    className
   );
 
-  const LoadingNode = <div className="boty-btn-loading"><img className="boty-btn-loading-icon" src={LoadingIcon} /></div>
+  const LoadingNode = (
+    <div className="boty-btn-loading">
+      <img className="boty-btn-loading-icon" src={LoadingIcon} />
+    </div>
+  );
 
-  const childrenNode = children || null
+  const childrenNode = children || null;
 
   return (
-    <button type={htmlType}
-      className={classes}
-      onClick={handleClick}>
+    <button type={htmlType} className={classes} onClick={handleClick}>
       {innerLoading && LoadingNode}
       {childrenNode}
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
