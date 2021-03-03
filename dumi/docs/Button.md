@@ -3,12 +3,12 @@
  * @Date: 2021-03-03 13:15:56
  * @LastEditors: Cookie
  * @LastEditTime: 2021-03-03 15:15:02
- * @Description: 
+ * @Description:
 -->
 
 ---
-Button
----
+
+## Button
 
 ```jsx
 /**
@@ -16,11 +16,9 @@ Button
  * desc: 参考 antd
  */
 import React from 'react';
-import Button from "../../src/components/Button";
-export default () => <Button>按钮</Button>
-
+import Button from '../../packages/components/src/Button';
+export default () => <Button>按钮</Button>;
 ```
-
 
 ```jsx
 /**
@@ -29,17 +27,20 @@ export default () => <Button>按钮</Button>
  */
 
 import React from 'react';
-import Button from "../../src/components/Button";
+import Button from '../../packages/components/src/Button';
 const handlerSyncClick = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        alert('回调结束')
-        resolve(true);
-      }, 1000);
-    });
-  };
-export default () => <Button onClick={handlerSyncClick} loading>异步回调</Button>
-
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      alert('回调结束');
+      resolve(true);
+    }, 1000);
+  });
+};
+export default () => (
+  <Button onClick={handlerSyncClick} loading>
+    异步回调
+  </Button>
+);
 ```
 
-<API src="../../src/components/Button/index.tsx"></API>
+<API src="../../packages/components/src/Button/index.tsx"></API>

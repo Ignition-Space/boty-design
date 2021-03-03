@@ -6,26 +6,31 @@
  * @Description:
  */
 
-import React, { useState } from "react";
-import classNames from "classnames";
-import {
-  LoadingOutlined,
-} from '@ant-design/icons';
-import { tuple } from "../utils/types";
-import { getPrefixCls } from '../config/provider'
+import React, { useState } from 'react';
+import classNames from 'classnames';
+import { LoadingOutlined } from '@ant-design/icons';
+import { tuple } from '@boty-design/utils';
+import { getPrefixCls } from '../config/provider';
 
-import "./index.less";
+import './index.less';
 
-const ButtonTypes = tuple("default", "primary", "ghost", "dashed", "link", "text");
+const ButtonTypes = tuple(
+  'default',
+  'primary',
+  'ghost',
+  'dashed',
+  'link',
+  'text'
+);
 export type ButtonType = typeof ButtonTypes[number];
 
-const ButtonShapes = tuple("circle", "round");
+const ButtonShapes = tuple('circle', 'round');
 export type ButtonShape = typeof ButtonShapes[number];
 
-const ButtonHTMLTypes = tuple("submit", "button", "reset");
+const ButtonHTMLTypes = tuple('submit', 'button', 'reset');
 export type ButtonHTMLType = typeof ButtonHTMLTypes[number];
 
-export type SizeType = "small" | "middle" | "large" | undefined;
+export type SizeType = 'small' | 'middle' | 'large' | undefined;
 
 interface BaseProps {
   /**
@@ -91,7 +96,7 @@ type Loading = number | boolean;
 
 const Button = (props: IButtonProps) => {
   const {
-    htmlType = "button" as IButtonProps["htmlType"],
+    htmlType = 'button' as IButtonProps['htmlType'],
     prefixCls,
     type,
     shape,
@@ -100,25 +105,27 @@ const Button = (props: IButtonProps) => {
     children,
     loading,
     style: customStyle,
-    icon
+    icon,
   } = props;
 
   const [innerLoading, setLoading] = useState<Loading>(false);
 
-  let sizeCls = "";
+  let sizeCls = '';
 
   switch (customizeSize) {
-    case "large":
-      sizeCls = "lg";
+    case 'large':
+      sizeCls = 'lg';
       break;
-    case "small":
-      sizeCls = "sm";
+    case 'small':
+      sizeCls = 'sm';
       break;
     default:
       break;
   }
 
-  const handleClick = async (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => {
+  const handleClick = async (
+    e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>
+  ) => {
     const { onClick } = props;
     if (innerLoading) return;
     if (loading) {
@@ -130,7 +137,7 @@ const Button = (props: IButtonProps) => {
     }
   };
 
-  const selfPrefixCls = getPrefixCls(prefixCls || 'btn')
+  const selfPrefixCls = getPrefixCls(prefixCls || 'btn');
 
   const iconType = innerLoading ? 'loading' : icon;
 
@@ -145,7 +152,7 @@ const Button = (props: IButtonProps) => {
     className
   );
 
-  const iconPrefixCls = getPrefixCls('btn-icon')
+  const iconPrefixCls = getPrefixCls('btn-icon');
   const iconClasses = classNames(
     iconPrefixCls,
     {
@@ -155,17 +162,19 @@ const Button = (props: IButtonProps) => {
   );
 
   const LoadingNode = () => {
-    if (icon) return icon
-    return (
-      innerLoading &&
-      <LoadingOutlined className={iconClasses} />
-    )
-  }
+    if (icon) return icon;
+    return innerLoading && <LoadingOutlined className={iconClasses} />;
+  };
 
   const childrenNode = children || null;
 
   return (
-    <button type={htmlType} className={classes} onClick={handleClick} style={customStyle}>
+    <button
+      type={htmlType}
+      className={classes}
+      onClick={handleClick}
+      style={customStyle}
+    >
       {LoadingNode()}
       {childrenNode}
     </button>
