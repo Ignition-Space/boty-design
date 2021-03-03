@@ -2,14 +2,17 @@
  * @Author: Cookie
  * @Date: 2021-02-27 16:14:15
  * @LastEditors: Cookie
- * @LastEditTime: 2021-03-02 21:30:18
+ * @LastEditTime: 2021-03-03 12:27:13
  * @Description:
  */
 
 import React, { useState } from "react";
 import classNames from "classnames";
-import LoadingIcon from "../assets/images/loading.png";
+import {
+  LoadingOutlined,
+} from '@ant-design/icons';
 import { tuple } from "../utils/types";
+import { getPrefixCls } from '../config/provider'
 
 import "./index.less";
 
@@ -54,17 +57,18 @@ type Loading = number | boolean;
 const Button = (props: IButtonProps) => {
   const {
     htmlType = "button" as IButtonProps["htmlType"],
-    prefixCls = "boty-btn",
+    prefixCls,
     type,
     shape,
     size: customizeSize,
     className,
     children,
     loading,
-    style: customStyle
+    style: customStyle,
+    icon
   } = props;
 
-  const [innerLoading, setLoading] = React.useState<Loading>(false);
+  const [innerLoading, setLoading] = useState<Loading>(false);
 
   let sizeCls = "";
 
@@ -91,27 +95,43 @@ const Button = (props: IButtonProps) => {
     }
   };
 
+  const selfPrefixCls = getPrefixCls(prefixCls || 'btn')
+
+  const iconType = innerLoading ? 'loading' : icon;
+
   const classes = classNames(
-    prefixCls,
+    selfPrefixCls,
     {
-      [`${prefixCls}-${type}`]: type,
-      [`${prefixCls}-${shape}`]: shape,
-      [`${prefixCls}-${sizeCls}`]: sizeCls,
+      [`${selfPrefixCls}-${type}`]: type,
+      [`${selfPrefixCls}-${shape}`]: shape,
+      [`${selfPrefixCls}-${sizeCls}`]: sizeCls,
+      [`${selfPrefixCls}-icon-only`]: !children && children !== 0 && iconType,
     },
     className
   );
 
-  const LoadingNode = (
-    <div className="boty-btn-loading">
-      <img className="boty-btn-loading-icon" src={LoadingIcon} />
-    </div>
+  const iconPrefixCls = getPrefixCls('btn-icon')
+  const iconClasses = classNames(
+    iconPrefixCls,
+    {
+      [`${iconPrefixCls}-${sizeCls}`]: sizeCls,
+    },
+    className
   );
+
+  const LoadingNode = () => {
+    if (icon) return icon
+    return (
+      innerLoading &&
+      <LoadingOutlined className={iconClasses} />
+    )
+  }
 
   const childrenNode = children || null;
 
   return (
     <button type={htmlType} className={classes} onClick={handleClick} style={customStyle}>
-      {innerLoading && LoadingNode}
+      {LoadingNode()}
       {childrenNode}
     </button>
   );
