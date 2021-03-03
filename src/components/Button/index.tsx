@@ -2,14 +2,17 @@
  * @Author: Cookie
  * @Date: 2021-02-27 16:14:15
  * @LastEditors: Cookie
- * @LastEditTime: 2021-03-02 21:30:18
+ * @LastEditTime: 2021-03-03 14:28:03
  * @Description:
  */
 
 import React, { useState } from "react";
 import classNames from "classnames";
-import LoadingIcon from "../assets/images/loading.png";
+import {
+  LoadingOutlined,
+} from '@ant-design/icons';
 import { tuple } from "../utils/types";
+import { getPrefixCls } from '../config/provider'
 
 import "./index.less";
 
@@ -25,25 +28,60 @@ export type ButtonHTMLType = typeof ButtonHTMLTypes[number];
 export type SizeType = "small" | "middle" | "large" | undefined;
 
 interface BaseProps {
+  /**
+   * @description 自定义样式名
+   */
   className?: string;
+  /**
+   * @description 自定义样式
+   */
   style?: React.HTMLProps<HTMLStyleElement>;
 }
 
 interface BaseButtonProps {
+  /**
+   * @description 按钮类型
+   */
   type?: ButtonType;
+  /**
+   * @description 图标组件
+   */
   icon?: React.ReactNode;
+  /**
+   * @description 形状
+   */
   shape?: ButtonShape;
+  /**
+   * @description 大小
+   */
   size?: SizeType;
-  loading?: boolean | { delay?: number };
+  /**
+   * @description loading状态，设置之后会执行异步方法
+   */
+  loading?: boolean;
+  /**
+   * @description 样式前缀
+   */
   prefixCls?: string;
+  /**
+   * @description 危险类型
+   */
   danger?: boolean;
-  href?: string;
+  /**
+   * @description 按钮原生类型
+   */
   htmlType?: ButtonHTMLType;
   children?: React.ReactNode;
 }
 
 interface INativeButtonProps {
+  /**
+   * @description 是否生效
+   */
   disabled?: boolean;
+  /**
+   * @description 点击方法
+   */
   onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
@@ -54,17 +92,18 @@ type Loading = number | boolean;
 const Button = (props: IButtonProps) => {
   const {
     htmlType = "button" as IButtonProps["htmlType"],
-    prefixCls = "boty-btn",
+    prefixCls,
     type,
     shape,
     size: customizeSize,
     className,
     children,
     loading,
-    style: customStyle
+    style: customStyle,
+    icon
   } = props;
 
-  const [innerLoading, setLoading] = React.useState<Loading>(false);
+  const [innerLoading, setLoading] = useState<Loading>(false);
 
   let sizeCls = "";
 
@@ -91,27 +130,43 @@ const Button = (props: IButtonProps) => {
     }
   };
 
+  const selfPrefixCls = getPrefixCls(prefixCls || 'btn')
+
+  const iconType = innerLoading ? 'loading' : icon;
+
   const classes = classNames(
-    prefixCls,
+    selfPrefixCls,
     {
-      [`${prefixCls}-${type}`]: type,
-      [`${prefixCls}-${shape}`]: shape,
-      [`${prefixCls}-${sizeCls}`]: sizeCls,
+      [`${selfPrefixCls}-${type}`]: type,
+      [`${selfPrefixCls}-${shape}`]: shape,
+      [`${selfPrefixCls}-${sizeCls}`]: sizeCls,
+      [`${selfPrefixCls}-icon-only`]: !children && children !== 0 && iconType,
     },
     className
   );
 
-  const LoadingNode = (
-    <div className="boty-btn-loading">
-      <img className="boty-btn-loading-icon" src={LoadingIcon} />
-    </div>
+  const iconPrefixCls = getPrefixCls('btn-icon')
+  const iconClasses = classNames(
+    iconPrefixCls,
+    {
+      [`${iconPrefixCls}-${sizeCls}`]: sizeCls,
+    },
+    className
   );
+
+  const LoadingNode = () => {
+    if (icon) return icon
+    return (
+      innerLoading &&
+      <LoadingOutlined className={iconClasses} />
+    )
+  }
 
   const childrenNode = children || null;
 
   return (
     <button type={htmlType} className={classes} onClick={handleClick} style={customStyle}>
-      {innerLoading && LoadingNode}
+      {LoadingNode()}
       {childrenNode}
     </button>
   );
