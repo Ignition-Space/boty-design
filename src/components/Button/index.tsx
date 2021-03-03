@@ -2,7 +2,7 @@
  * @Author: Cookie
  * @Date: 2021-02-27 16:14:15
  * @LastEditors: Cookie
- * @LastEditTime: 2021-03-03 12:27:13
+ * @LastEditTime: 2021-03-03 14:28:03
  * @Description:
  */
 
@@ -28,25 +28,60 @@ export type ButtonHTMLType = typeof ButtonHTMLTypes[number];
 export type SizeType = "small" | "middle" | "large" | undefined;
 
 interface BaseProps {
+  /**
+   * @description 自定义样式名
+   */
   className?: string;
+  /**
+   * @description 自定义样式
+   */
   style?: React.HTMLProps<HTMLStyleElement>;
 }
 
 interface BaseButtonProps {
+  /**
+   * @description 按钮类型
+   */
   type?: ButtonType;
+  /**
+   * @description 图标组件
+   */
   icon?: React.ReactNode;
+  /**
+   * @description 形状
+   */
   shape?: ButtonShape;
+  /**
+   * @description 大小
+   */
   size?: SizeType;
-  loading?: boolean | { delay?: number };
+  /**
+   * @description loading状态，设置之后会执行异步方法
+   */
+  loading?: boolean;
+  /**
+   * @description 样式前缀
+   */
   prefixCls?: string;
+  /**
+   * @description 危险类型
+   */
   danger?: boolean;
-  href?: string;
+  /**
+   * @description 按钮原生类型
+   */
   htmlType?: ButtonHTMLType;
   children?: React.ReactNode;
 }
 
 interface INativeButtonProps {
+  /**
+   * @description 是否生效
+   */
   disabled?: boolean;
+  /**
+   * @description 点击方法
+   */
   onClick?: React.MouseEventHandler<HTMLElement>;
 }
 

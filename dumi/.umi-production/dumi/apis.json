@@ -1,0 +1,66 @@
+{
+  "Button": {
+    "default": [
+      {
+        "identifier": "className",
+        "description": "自定义样式名",
+        "type": "string"
+      },
+      {
+        "identifier": "style",
+        "description": "自定义样式",
+        "type": "HTMLProps<HTMLStyleElement>"
+      },
+      {
+        "identifier": "type",
+        "description": "按钮类型",
+        "type": "\"default\" | \"primary\" | \"ghost\" | \"dashed\" | \"link\" | \"text\""
+      },
+      {
+        "identifier": "icon",
+        "description": "图标组件",
+        "type": "ReactNode"
+      },
+      {
+        "identifier": "shape",
+        "description": "形状",
+        "type": "\"circle\" | \"round\""
+      },
+      {
+        "identifier": "size",
+        "description": "大小",
+        "type": "SizeType"
+      },
+      {
+        "identifier": "loading",
+        "description": "loading状态，设置之后会执行异步方法",
+        "type": "boolean"
+      },
+      {
+        "identifier": "prefixCls",
+        "description": "样式前缀",
+        "type": "string"
+      },
+      {
+        "identifier": "danger",
+        "description": "危险类型",
+        "type": "boolean"
+      },
+      {
+        "identifier": "htmlType",
+        "description": "按钮原生类型",
+        "type": "\"submit\" | \"button\" | \"reset\""
+      },
+      {
+        "identifier": "disabled",
+        "description": "是否生效",
+        "type": "boolean"
+      },
+      {
+        "identifier": "onClick",
+        "description": "点击方法",
+        "type": "MouseEventHandler<HTMLElement>"
+      }
+    ]
+  }
+}
