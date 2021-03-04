@@ -16,5 +16,5 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["./src", "packages/components/src/index.tsx", "packages/utils/types.ts", "packages/components/src/config", "packages/components/src/Button"]
+  "include": ["./src", "packages/components/src/index.js", "packages/utils/types.ts", "packages/components/src/config", "packages/components/src/Button"]
 }

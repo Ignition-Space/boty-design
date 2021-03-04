@@ -12,17 +12,9 @@ const path = require('path');
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-      public: path.resolve(__dirname, 'public'),
-    },
+  server: {
+    port: 5222,
   },
+  resolve: {},
   plugins: [reactRefresh()],
-  build: {
-    lib: {
-      entry: path.resolve(__dirname, 'src/index.tsx'),
-      name: 'boty-desing',
-    },
-  },
 });

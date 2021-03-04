@@ -16,3 +16,6 @@ typings/
 .vscode
 .idea
 .umi
+
+
+dist/

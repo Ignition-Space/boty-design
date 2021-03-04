@@ -14,6 +14,7 @@
     }
   },
   "scripts": {
+    "dev": "lerna exec --scope \"@boty-design/components\" yarn dev",
     "build": "lerna run --parallel --scope \"@boty-design/*\" build",
     "serve": "vite preview",
     "dumi": "cross-env APP_ROOT=dumi dumi dev",
@@ -36,5 +37,11 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@boty-design/components": "file:packages/components",
+    "@boty-design/examples": "file:packages/examples",
+    "@boty-design/themes": "file:packages/themes",
+    "@boty-design/utils": "file:packages/utils"
+  }
 }

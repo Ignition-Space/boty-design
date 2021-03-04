@@ -1,11 +1,10 @@
 {
-  "name": "@boty-design/components",
+  "name": "@boty-design/examples",
+  "private": true,
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "serializedowen22 <wjh199455@gmail.com>",
   "homepage": "https://github.com/serializedowen/boty-design#readme",
-  "license": "ISC",
-  "main": "src/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -18,14 +17,10 @@
     "url": "git+https://github.com/serializedowen/boty-design.git"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "dev": "vite"
   },
   "bugs": {
     "url": "https://github.com/serializedowen/boty-design/issues"
   },
-  "dependencies": {
-    "@ant-design/icons": "^4.5.0"
-  }
+  "dependencies": {}
 }
