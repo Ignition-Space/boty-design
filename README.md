@@ -20,7 +20,7 @@
 [中文文档](https://boty-design.github.io/boty-design/)
 
 ## 安装
-```
+```jsx
 $ npm install boty-design --save
 
 $ yarn add boty-design
@@ -28,7 +28,7 @@ $ yarn add boty-design
 ```
 
 ## 使用
-```
+```jsx
 import { Button } from "boty-design";
 
 const App = () => (
