@@ -2,7 +2,7 @@
  * @Author: Cookie
  * @Date: 2021-03-02 13:47:42
  * @LastEditors: Cookie
- * @LastEditTime: 2021-03-03 02:02:09
+ * @LastEditTime: 2021-03-04 13:43:58
  * @FilePath: /vite-react-boty-desing/vite.config.ts
  * @Description: 
  */
@@ -22,7 +22,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/components/index.tsx'),
-      name: 'boty-desing',
+      name: 'boty-design',
     }
   }
 })
