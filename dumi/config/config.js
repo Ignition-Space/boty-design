@@ -2,7 +2,7 @@
  * @Author: Cookie
  * @Date: 2021-03-03 13:15:14
  * @LastEditors: Cookie
- * @LastEditTime: 2021-03-05 17:03:01
+ * @LastEditTime: 2021-03-05 17:15:42
  * @Description:
  */
 import { join } from 'path'
@@ -19,7 +19,7 @@ export default {
       .use('babel-loader')
   },
   alias: {
-    '@boty-desgin': join(__dirname, '..', '..', 'packages/components/src'),
+    '@boty-design/components': join(__dirname, '..', '..', 'packages/components/src'),
   },
   exportStatic: {},
   logo: 'https://avatars.githubusercontent.com/u/79920730',

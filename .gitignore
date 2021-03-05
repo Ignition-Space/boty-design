@@ -15,7 +15,8 @@ typings/
 .DS_Store
 .vscode
 .idea
-.umi
-
+dumi/.umi/
+dumi/.umi-production/
+dumi/dist/
 
 dist/

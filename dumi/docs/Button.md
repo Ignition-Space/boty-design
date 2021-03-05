@@ -2,7 +2,7 @@
  * @Author: Cookie
  * @Date: 2021-03-03 13:15:56
  * @LastEditors: Cookie
- * @LastEditTime: 2021-03-05 17:02:36
+ * @LastEditTime: 2021-03-05 17:15:13
  * @Description:
 -->
 
@@ -16,7 +16,7 @@
  * desc: 参考 antd
  */
 import React from "react";
-import Button from "@boty-desgin/Button";
+import Button from "@boty-design/components/Button";
 export default () => <Button>按钮</Button>;
 ```
 
@@ -27,7 +27,7 @@ export default () => <Button>按钮</Button>;
  */
 
 import React from "react";
-import Button from "@boty-desgin/Button";
+import Button from "@boty-design/components/Button";
 const handlerSyncClick = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
