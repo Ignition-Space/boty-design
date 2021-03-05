@@ -2,8 +2,8 @@
   "name": "@boty-design/components",
   "version": "0.0.0",
   "description": "> TODO: description",
-  "author": "serializedowen22 <wjh199455@gmail.com>",
-  "homepage": "https://github.com/serializedowen/boty-design#readme",
+  "author": "boty",
+  "homepage": "https://github.com/boty-design/boty-design#readme",
   "license": "ISC",
   "main": "src/index.js",
   "directories": {
@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/serializedowen/boty-design.git"
+    "url": "git+https://github.com/boty-design/boty-design.git"
   },
   "scripts": {
     "dev": "vite",
@@ -24,7 +24,7 @@
     "prepublish": "yarn build"
   },
   "bugs": {
-    "url": "https://github.com/serializedowen/boty-design/issues"
+    "url": "https://github.com/boty-design/boty-design/issues"
   },
   "dependencies": {
     "@ant-design/icons": "^4.5.0"

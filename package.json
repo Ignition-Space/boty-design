@@ -41,6 +41,8 @@
   "dependencies": {
     "@boty-design/components": "file:packages/components",
     "@boty-design/examples": "file:packages/examples",
+    "@boty-design/form-generator": "file:packages/form-generator",
+    "@boty-design/icons": "file:packages/icons",
     "@boty-design/themes": "file:packages/themes",
     "@boty-design/utils": "file:packages/utils"
   }
