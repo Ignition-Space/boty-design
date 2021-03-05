@@ -1,10 +1,10 @@
 {
   "name": "@boty-design/examples",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "> TODO: description",
-  "author": "serializedowen22 <wjh199455@gmail.com>",
-  "homepage": "https://github.com/serializedowen/boty-design#readme",
+  "author": "boty",
+  "homepage": "https://github.com/boty-design/boty-design#readme",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -14,13 +14,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/serializedowen/boty-design.git"
+    "url": "git+https://github.com/boty-design/boty-design.git"
   },
   "scripts": {
     "dev": "vite"
   },
   "bugs": {
-    "url": "https://github.com/serializedowen/boty-design/issues"
+    "url": "https://github.com/boty-design/boty-design/issues"
   },
   "dependencies": {}
 }

@@ -2,7 +2,7 @@
  * @Author: Cookie
  * @Date: 2021-02-27 16:14:15
  * @LastEditors: Cookie
- * @LastEditTime: 2021-03-03 14:28:03
+ * @LastEditTime: 2021-03-05 15:09:29
  * @Description:
  */
 
@@ -175,7 +175,7 @@ const Button = (props: IButtonProps) => {
       onClick={handleClick}
       style={customStyle}
     >
-      {/* {LoadingNode()} */}
+      {LoadingNode()}
       {childrenNode}
     </button>
   );

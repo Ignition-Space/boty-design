@@ -16,9 +16,8 @@
   "scripts": {
     "dev": "lerna exec --scope \"@boty-design/examples\" yarn dev",
     "build": "lerna run --parallel --scope \"@boty-design/*\" build",
-    "serve": "vite preview",
-    "dumi": "cross-env APP_ROOT=dumi dumi dev",
-    "dumi-build": "cross-env APP_ROOT=dumi dumi build"
+    "doc": "cross-env APP_ROOT=dumi dumi dev",
+    "doc:build": "cross-env APP_ROOT=dumi dumi build"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
@@ -37,13 +36,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "dependencies": {
-    "@boty-design/components": "file:packages/components",
-    "@boty-design/examples": "file:packages/examples",
-    "@boty-design/form-generator": "file:packages/form-generator",
-    "@boty-design/icons": "file:packages/icons",
-    "@boty-design/themes": "file:packages/themes",
-    "@boty-design/utils": "file:packages/utils"
-  }
+  ]
 }
