@@ -14,7 +14,7 @@
     }
   },
   "scripts": {
-    "dev": "lerna exec --scope \"@boty-design/components\" yarn dev",
+    "dev": "lerna exec --scope \"@boty-design/examples\" yarn dev",
     "build": "lerna run --parallel --scope \"@boty-design/*\" build",
     "serve": "vite preview",
     "dumi": "cross-env APP_ROOT=dumi dumi dev",
