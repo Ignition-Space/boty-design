@@ -8,9 +8,11 @@
 import React, { useState } from 'react';
 import { Button } from '@boty-design/components';
 import { LoadingOutlined } from '@ant-design/icons';
+import { useFormItem } from '@boty-design/form-generator';
 
 function App() {
   const [count, setCount] = useState(0);
+  useFormItem();
 
   const handlerSyncClick = () => {
     return new Promise((resolve) => {
@@ -28,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <Button onClick={handlerSyncClick} loading={true}>
-        异步按钮
+        异步按钮rrr
       </Button>
       <Button onClick={handlerClick} icon={<LoadingOutlined />}>
         按钮

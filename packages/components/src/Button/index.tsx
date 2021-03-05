@@ -175,7 +175,7 @@ const Button = (props: IButtonProps) => {
       onClick={handleClick}
       style={customStyle}
     >
-      {LoadingNode()}
+      {/* {LoadingNode()} */}
       {childrenNode}
     </button>
   );
