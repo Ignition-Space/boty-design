@@ -1,33 +1,33 @@
+@import '../../assets/css/index.less';
 .boty-btn {
   min-width: 88px;
   height: 32px;
   padding: 4px 15px;
-  font-size: 14px;
+  font-size: @default-font-size;
   cursor: pointer;
   text-align: center;
-  border: 1px solid #d9d9d9;
+  border: 1px solid @default-border-color;
   display: inline-block;
-  font-weight: 400;
+  font-weight: @font-weight-normal;
   white-space: nowrap;
   user-select: none;
   background: #fff;
-  border-radius: 2px;
+  border-radius: @default-fillet;
   touch-action: manipulation;
   outline: none;
   position: relative;
   box-sizing: border-box;
-  margin: 0 5px;
-
+  margin: 0 5px;  
 
   .boty-btn-icon {
-    font-size: 14px;
+    font-size: @default-font-size;
 
     &.boty-btn-icon-lg {
       font-size: 16px;
     }
 
     &.boty-btn-icon-sm {
-      font-size: 14px;
+      font-size: @default-font-size;
     }
   }
 
@@ -47,7 +47,7 @@
   &.boty-btn-sm {
     height: 24px;
     padding: 0 7px;
-    font-size: 14px;
+    font-size: @default-font-size;
   }
 
   &.boty-btn-circle {
@@ -57,7 +57,25 @@
     border-radius: 50%;
   }
 
-  &.boty-btn-round {
-    border-radius: 40px;
+  &.boty-btn-color-primary {
+    background-color: @primary;
+    color: @white;
   }
+  &.boty-btn-color-info {
+    background-color: @info;
+    color: @white;
+  }
+  &.boty-btn-color-success {
+    background-color: @success;
+    color: @white;
+  }
+  &.boty-btn-color-error {
+    background-color: @error;
+    color: @white;
+  }
+  &.boty-btn-color-warning {
+    background-color: @warning;
+    color: @white;
+  }
+
 }
