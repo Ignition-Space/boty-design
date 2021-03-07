@@ -27,6 +27,9 @@ function App() {
   const handlerClick = () => {
     console.log("sss");
   };
+  const btnStyle = {
+    color: "red"
+  }
 
   return (
     <div className="App">
@@ -35,6 +38,9 @@ function App() {
       </Button>
       <Button onClick={handlerClick} icon={<LoadingOutlined />}>按钮</Button>
       <Button shape="circle" icon={<LoadingOutlined />}></Button>
+      <Button colorSchemes="success">成功</Button>
+      <Button colorSchemes="error">失败</Button>
+      <Button colorSchemes="#f6cede" style={btnStyle}>警告+自定义style</Button>
     </div>
   );
 }

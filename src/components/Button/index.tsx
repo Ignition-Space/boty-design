@@ -27,6 +27,9 @@ export type ButtonHTMLType = typeof ButtonHTMLTypes[number];
 
 export type SizeType = "small" | "middle" | "large" | undefined;
 
+const colorSchemes = tuple("primary", "success", "error", "warning");
+export type colorScheme = typeof colorSchemes[number];
+
 interface BaseProps {
   /**
    * @description 自定义样式名
@@ -64,6 +67,10 @@ interface BaseButtonProps {
    */
   prefixCls?: string;
   /**
+   * @description 按钮颜色
+   */
+  colorSchemes?: string;
+   /**
    * @description 危险类型
    */
   danger?: boolean;
@@ -73,6 +80,7 @@ interface BaseButtonProps {
   htmlType?: ButtonHTMLType;
   children?: React.ReactNode;
 }
+
 
 interface INativeButtonProps {
   /**
@@ -97,6 +105,7 @@ const Button = (props: IButtonProps) => {
     shape,
     size: customizeSize,
     className,
+    colorSchemes,
     children,
     loading,
     style: customStyle,
@@ -141,6 +150,7 @@ const Button = (props: IButtonProps) => {
       [`${selfPrefixCls}-${shape}`]: shape,
       [`${selfPrefixCls}-${sizeCls}`]: sizeCls,
       [`${selfPrefixCls}-icon-only`]: !children && children !== 0 && iconType,
+      [`${selfPrefixCls}-color-${colorSchemes}`]: colorSchemes,
     },
     className
   );
