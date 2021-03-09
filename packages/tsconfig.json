@@ -1,0 +1,11 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./components" },
+    { "path": "./examples" },
+    { "path": "./form-generator" },
+    { "path": "./icons" },
+    { "path": "./themes" },
+    { "path": "./utils" }
+  ]
+}

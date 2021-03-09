@@ -1,20 +1,35 @@
 {
   "compilerOptions": {
+    "composite": true,
     "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["vite/client"],
-    "allowJs": false,
-    "skipLibCheck": false,
-    "esModuleInterop": false,
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "types": [
+      "vite/client"
+    ],
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
+    "rootDir": ".",
+    "baseUrl": "./packages",
+    "paths": {
+      "@boty-design/*": [
+        "./*/src"
+      ]
+    },
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
     "jsx": "react"
   },
-  "include": ["./src", "packages/components/src/index.js", "packages/utils/types.ts", "packages/components/src/config", "packages/components/src/Button"]
+  "exclude": [
+    "node_modules",
+    "lib"
+  ]
 }

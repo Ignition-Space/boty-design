@@ -1,10 +1,9 @@
 import { FormItemType } from '../internals/symbols';
-import { BaseFormItem } from '../types';
+import { IFormItem } from '../types';
 
-export default function FormItem<T extends BaseFormItem>(
-  ctor: T
-): ClassDecorator {
-  return (target: Object) => {
-    Reflect.defineMetadata(FormItemType, ctor, target);
+export default function FormItem(): PropertyDecorator {
+  return (target, prop) => {
+    console.log(Reflect.getMetadata('design:type', target, prop));
+    console.log(Reflect.getMetadata('design:type', target, prop));
   };
 }

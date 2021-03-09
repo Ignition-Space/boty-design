@@ -2,5 +2,7 @@ import { useState } from 'react';
 import { FormItemType } from '../internals/symbols';
 
 export default function useFormItem(proto: any) {
-  Reflect.getMetadata(FormItemType, proto);
+  console.log(Reflect.getMetadata('123', proto, 'hello'));
+
+  console.log(Reflect.getMetadata(FormItemType, proto));
 }

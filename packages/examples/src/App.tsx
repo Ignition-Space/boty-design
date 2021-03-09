@@ -5,14 +5,14 @@
  * @LastEditTime: 2021-03-03 12:34:30
  * @Description:
  */
+
 import React, { useState } from 'react';
 import { Button } from '@boty-design/components';
 import { LoadingOutlined } from '@ant-design/icons';
-import { useFormItem } from '@boty-design/form-generator';
+import FormExample from './FormExample';
 
 function App() {
   const [count, setCount] = useState(0);
-  useFormItem();
 
   const handlerSyncClick = () => {
     return new Promise((resolve) => {
@@ -36,6 +36,8 @@ function App() {
         按钮
       </Button>
       <Button shape="circle" icon={<LoadingOutlined />}></Button>
+
+      <FormExample></FormExample>
     </div>
   );
 }

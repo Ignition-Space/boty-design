@@ -18,6 +18,7 @@
     "url": "git+https://github.com/boty-design/boty-design.git"
   },
   "scripts": {
+    "build": "tsc -b .",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
