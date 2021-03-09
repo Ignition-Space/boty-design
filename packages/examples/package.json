@@ -22,7 +22,5 @@
   "bugs": {
     "url": "https://github.com/boty-design/boty-design/issues"
   },
-  "dependencies": {
-    "reflect-metadata": "^0.1.13"
-  }
+  "dependencies": {}
 }
