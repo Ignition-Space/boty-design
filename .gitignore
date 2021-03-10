@@ -16,4 +16,9 @@ typings/
 .vscode
 .idea
 .umi
-dist
+
+dumi/.umi/
+dumi/.umi-production/
+dumi/dist/
+
+dist/
