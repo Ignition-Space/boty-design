@@ -20,6 +20,6 @@ dumi/.umi-production/
 dumi/dist/
 
 dist/
-
+*.d.ts
 
 lib/
