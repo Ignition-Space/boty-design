@@ -14,6 +14,7 @@
   </a>
 </p>
 
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
 ## 文档
 
@@ -29,7 +30,7 @@ $ yarn add boty-design
 
 ## 使用
 ```jsx
-import { Button } from "boty-design";
+import { Button } from "@boty-design/components";
 
 const App = () => (
      <Button onClick={handlerSyncClick} loading={true}  >
