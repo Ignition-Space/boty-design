@@ -1,0 +1,26 @@
+{
+  "name": "@boty-design/examples",
+  "private": true,
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": "boty",
+  "homepage": "https://github.com/boty-design/boty-design#readme",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boty-design/boty-design.git"
+  },
+  "scripts": {
+    "dev": "vite"
+  },
+  "bugs": {
+    "url": "https://github.com/boty-design/boty-design/issues"
+  },
+  "dependencies": {}
+}
