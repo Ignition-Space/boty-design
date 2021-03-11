@@ -1,4 +1,4 @@
-import React, { Reducer, useReducer } from 'react';
+import React, { Reducer, useReducer, ReactNode } from 'react';
 import invariant from 'invariant';
 type FormValues = {
   [key in string]: any;
@@ -16,7 +16,7 @@ export type FormActions =
   | Action<ActionEnums.SET_FIELD, Partial<FormValues>>;
 
 /**
- * An object containing error messages whose keys correspond to FormikValues.
+ * An object containing error messages whose keys correspond to FormValues.
  * Should always be an object of strings, but any is allowed to support i18n libraries.
  */
 export type FormErrors<FormValues> = {
@@ -30,7 +30,7 @@ export type FormErrors<FormValues> = {
 };
 
 /**
- * An object containing touched state of the form whose keys correspond to FormikValues.
+ * An object containing touched state of the form whose keys correspond to FormValues.
  */
 export type FormTouched<FormValues> = {
   [K in keyof FormValues]?: FormValues[K] extends any[]
@@ -42,23 +42,36 @@ export type FormTouched<FormValues> = {
     : boolean;
 };
 
-type FormProps = {
-  initialValues: FormValues;
-  initialTouched?: FormTouched<FormValues>;
-  initialErrors?: FormErrors<FormValues>;
+/**
+ * Props provided to <Form />
+ */
+type FormProps<V> = {
+  initialValues: V;
+  initialTouched?: FormTouched<V>;
+  initialErrors?: FormErrors<V>;
 };
 
-const Form: React.FC<FormProps> = ({
+type FormChildrenProps<V> = {
+  values: V;
+  touched: FormTouched<V>;
+  errors: FormErrors<V>;
+};
+
+function Form<Values extends FormValues>({
   initialValues,
-  initialErrors = {},
-  initialTouched = {},
-}) => {
+  initialErrors,
+  initialTouched,
+  children,
+}: FormProps<Values> & {
+  children: (props: FormChildrenProps<Values>) => ReactNode | ReactNode;
+}) {
   const [state, dispatch] = useReducer<
     Reducer<
       {
-        values: FormValues;
-        touched: FormTouched<FormValues>;
-        errors: FormErrors<FormValues>;
+        values: Values;
+        touched: FormTouched<Values>;
+        errors: FormErrors<Values>;
+        isValid: boolean;
       },
       FormActions
     >
@@ -78,9 +91,10 @@ const Form: React.FC<FormProps> = ({
       values: initialValues,
       touched: initialTouched,
       errors: initialErrors,
+      isValid: true,
     }
   );
-  return <div></div>;
-};
+  return <div>{children(state)}</div>;
+}
 
 export default Form;
