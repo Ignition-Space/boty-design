@@ -28,5 +28,6 @@
   },
   "dependencies": {
     "reflect-metadata": "^0.1.13"
-  }
+  },
+  "gitHead": "e672c3c1d4971d8b81c231c2adc79eca30db5ed8"
 }
