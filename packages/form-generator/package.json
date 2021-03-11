@@ -27,7 +27,10 @@
     "url": "https://github.com/boty-design/boty-design/issues"
   },
   "dependencies": {
+    "invariant": "^2.2.4",
     "reflect-metadata": "^0.1.13"
   },
-  "gitHead": "e672c3c1d4971d8b81c231c2adc79eca30db5ed8"
+  "devDependencies": {
+    "@types/invariant": "^2.2.34"
+  }
 }
