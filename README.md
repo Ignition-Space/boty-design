@@ -12,9 +12,11 @@
   <a href="https://github.com/boty-design/boty-design">
     <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="element-ui">
   </a>
+  <a href="https://github.com/boty-design/boty-design">
+    <img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" alt="lerna">
+  </a>
 </p>
 
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
 ## 文档
 
@@ -22,9 +24,9 @@
 
 ## 安装
 ```jsx
-$ npm install boty-design --save
+$ npm install @boty-design/components --save
 
-$ yarn add boty-design
+$ yarn add @boty-design/components
 
 ```
 
