@@ -1,21 +1,11 @@
 {
   "name": "boty-design",
   "private": true,
-  "version": "0.0.0",
   "files": [
     "dist"
   ],
-  "main": "./dist/boty-design.umd.js",
-  "module": "./dist/boty-design.es.js",
-  "exports": {
-    ".": {
-      "import": "./dist/boty-design.es.js",
-      "require": "./dist/boty-design.umd.js"
-    }
-  },
   "scripts": {
     "dev": "lerna exec --scope \"@boty-design/examples\" yarn dev",
-    "build1": "lerna exec --scope \"@boty-design/components\" yarn build",
     "build": "lerna run --parallel --scope \"@boty-design/*\" build",
     "doc": "cross-env APP_ROOT=dumi dumi dev",
     "doc:build": "cross-env APP_ROOT=dumi dumi build"
