@@ -59,45 +59,45 @@ const App = () => (
 ❌ 未开始
 ### 通用
 - Button 按钮 ⭐️ 
-- Layout 布局 
-- Icon 图标
+- Layout 布局 ❌
+- Icon 图标 ❌
 
 ### 表单
-- Form 表单组
-- Input 输入框
-- Radio单选框
-- Switch开关
-- Checkbox多选框
-- TimePicker 时间选择器
-- DatePicker 日期选择器
-- DateTimePicker 日期时间选择器
-- Upload 上传
-- Select 选择器
-- Slider 滑块
+- Form 表单组 ❌
+- Input 输入框 ❌
+- Radio单选框 ❌
+- Switch开关 ❌
+- Checkbox多选框 ❌
+- Select 选择器 ❌
+- Slider 滑块 ❌
+- TimePicker 时间选择器 ❌
+- DatePicker 日期选择器 ❌
+- DateTimePicker 日期时间选择器 ❌
+- Upload 上传 ❌
 
 
 ### 数据
-- Table 表格
-- tree 树
-- Tag 标签
-- Progress 进度条
-- Pagination 分页
-- Badge 标记
+- Table 表格 ❌
+- tree 树 ❌
+- Tag 标签 ❌
+- Progress 进度条 ❌
+- Pagination 分页 ❌
+- Badge 标记 ❌
 
 ### 交互
 
-- Dialog 对话框
-- MessageBox 弹框
-- Drawer 抽屉
-- Calendar 日历
-- Carousel 轮播走马灯
+- Dialog 对话框 ❌
+- MessageBox 弹框 ❌
+- Drawer 抽屉 ❌
+- Calendar 日历 ❌
+- Carousel 轮播走马灯 ❌
 
 
 ### 反馈
 
-- Message 消息提示
-- loading 加载
-- Notification 通知
+- Message 消息提示 ❌
+- loading 加载 ❌
+- Notification 通知 ❌
 
 ## LICENSE
 
