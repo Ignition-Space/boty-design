@@ -150,6 +150,14 @@ const Button = (props: IButtonProps) => {
 
   const iconType = innerLoading ? 'loading' : icon;
 
+
+  const LoadingNode = () => {
+    if (icon) return icon;
+    return innerLoading && <LoadingOutlined className={iconClasses} />;
+  };
+
+  const childrenNode = children || null;
+
   const classes = classNames(
     selfPrefixCls,
     {
@@ -159,7 +167,8 @@ const Button = (props: IButtonProps) => {
       [`${selfPrefixCls}-icon-only`]: !children && children !== 0 && iconType,
       [`${selfPrefixCls}-color-${colorSchemes}`]: colorSchemes,
     },
-    className
+    className,
+    LoadingNode() && childrenNode ? `${selfPrefixCls}-has-icon` : ''
   );
 
   const iconPrefixCls = getPrefixCls('btn-icon');
@@ -171,12 +180,7 @@ const Button = (props: IButtonProps) => {
     className
   );
 
-  const LoadingNode = () => {
-    if (icon) return icon;
-    return innerLoading && <LoadingOutlined className={iconClasses} />;
-  };
 
-  const childrenNode = children || null;
 
   return (
     <button

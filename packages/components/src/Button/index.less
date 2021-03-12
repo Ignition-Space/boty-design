@@ -23,7 +23,7 @@
     font-size: @default-font-size;
 
     &.boty-btn-icon-lg {
-      font-size: 16px;
+      font-size: @large-font-size;
     }
 
     &.boty-btn-icon-sm {
@@ -35,13 +35,13 @@
     height: 32px;
     width: 32px;
     padding: 2.4px 0;
-    font-size: 16px;
+    font-size: @large-font-size;
   }
 
   &.boty-btn-lg {
     height: 40px;
     padding: 6.4px 15px;
-    font-size: 16px;
+    font-size: @large-font-size;
   }
 
   &.boty-btn-sm {
@@ -76,5 +76,10 @@
   &.boty-btn-color-warning {
     background-color: @warning;
     color: @white;
+  }
+  &.boty-btn-has-icon{
+    .anticon{
+      margin-right: 5px;
+    }
   }
 }
