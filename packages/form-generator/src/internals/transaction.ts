@@ -2,7 +2,7 @@ import invariant from 'invariant';
 
 let inTransaction = false;
 let taskQueue = [];
-export const openTransaction = () => {
+export const startTransaction = () => {
   inTransaction = true;
 };
 

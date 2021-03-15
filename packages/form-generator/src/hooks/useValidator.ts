@@ -13,7 +13,6 @@ function useValidator<V>(
   return (val: V) => {
     const context = contextRef.current;
 
-    // console.log(context.state.values);
     context.dispatch({
       type: ActionEnums.SET_ERRORS,
       payload: { [fieldName]: [] },

@@ -4,6 +4,7 @@ import React, {
   ReactNode,
   useMemo,
   useRef,
+  useEffect,
   createContext,
 } from 'react';
 import invariant from 'invariant';
@@ -89,6 +90,10 @@ function Form<Values extends FormValues>({
   const validationContext = useRef<FormContext<Values>>({
     state,
     dispatch,
+  });
+
+  useEffect(() => {
+    validationContext.current = { state, dispatch };
   });
 
   const validators = useMemo(() => {
