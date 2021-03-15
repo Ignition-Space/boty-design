@@ -10,6 +10,7 @@ import { Button } from '@boty-design/components';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useFormItem } from '@boty-design/form-generator';
 import Form from '@boty-design/form-generator/src/components/Form';
+import Field from '@boty-design/form-generator/src/components/Field';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -72,12 +73,13 @@ function App() {
             <input
               value={values.password}
               onChange={(e) => {
+                console.log('object');
                 handleChange.password(e.target.value);
                 validators.password(e.target.value);
               }}
             ></input>
-            {values.password}
-            {values.email}
+
+            <Field name="email"></Field>
           </div>
         )}
       </Form>

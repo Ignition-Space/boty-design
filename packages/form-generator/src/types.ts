@@ -73,10 +73,10 @@ export type FormValidating<FormValues> = {
     : boolean;
 };
 
-export type FormValidators<FormValues, C = ValidationContext<FormValues>> = {
+export type FormValidators<FormValues, C = FormContext<FormValues>> = {
   [K in keyof FormValues]: (val: FormValues[K]) => string[] | Promise<string[]>;
 };
-export type ValidationContext<V> = {
+export type FormContext<V> = {
   state: {
     values: V;
     touched: FormTouched<V>;

@@ -1,4 +1,11 @@
-import React, { Reducer, useReducer, ReactNode, useMemo, useRef } from 'react';
+import React, {
+  Reducer,
+  useReducer,
+  ReactNode,
+  useMemo,
+  useRef,
+  createContext,
+} from 'react';
 import invariant from 'invariant';
 import {
   ValidateRule,
@@ -8,11 +15,12 @@ import {
   FormValidators,
   FormActions,
   ActionEnums,
-  ValidationContext,
+  FormContext,
   FormValidating,
   FormChangeEvent,
 } from '../types';
 import useValidator from '../hooks/useValidator';
+import { FormContextProvider } from '../internals/context';
 type FormValues = {
   [key in string]: any;
 };
@@ -25,7 +33,7 @@ type FormProps<V> = {
   initialTouched?: FormTouched<V>;
   initialErrors?: FormErrors<V>;
   validationSchema?: {
-    [K in keyof V]?: Wrapped<ValidateRule<V[K], ValidationContext<V>>>;
+    [K in keyof V]?: Wrapped<ValidateRule<V[K], FormContext<V>>>;
   };
 };
 
@@ -55,7 +63,7 @@ function Form<Values extends FormValues>({
     Reducer<FormStoreProps<Values>, FormActions<Values>>
   >(
     (state, { type, payload }) => {
-      console.log('action dispatched', ActionEnums[type], payload);
+      // console.log('action dispatched', ActionEnums[type], payload);
 
       switch (type) {
         case ActionEnums.SET_ERRORS:
@@ -66,9 +74,8 @@ function Form<Values extends FormValues>({
           return { ...state };
         }
         default:
-          invariant(true, 'you provided an unkown action!');
+          invariant(false, 'you provided an unkown action!');
       }
-      return state;
     },
     {
       values: initialValues,
@@ -79,7 +86,7 @@ function Form<Values extends FormValues>({
     }
   );
 
-  const validationContext = useRef<ValidationContext<Values>>({
+  const validationContext = useRef<FormContext<Values>>({
     state,
     dispatch,
   });
@@ -88,10 +95,10 @@ function Form<Values extends FormValues>({
     const vals = {};
 
     Object.keys(initialValues).map((fieldName) => {
-      const validator = useValidator<Values>(
+      const validator = useValidator(
         fieldName,
         validationSchema,
-        validationContext.current
+        validationContext
       );
       vals[fieldName] = validator;
     });
@@ -101,7 +108,7 @@ function Form<Values extends FormValues>({
   const handleChange = useMemo(() => {
     const handlers = {};
     Object.keys(initialValues).map((fieldName) => {
-      handlers[fieldName] = (val) =>
+      handlers[fieldName] = (val: any) =>
         dispatch({
           type: ActionEnums.SET_FIELD,
           payload: {
@@ -113,7 +120,11 @@ function Form<Values extends FormValues>({
     return handlers;
   }, [initialValues]) as FormChangeEvent<Values>;
 
-  return <div>{children({ ...state, validators, handleChange })}</div>;
+  return (
+    <FormContextProvider value={{ state, dispatch }}>
+      {children({ ...state, validators, handleChange })}
+    </FormContextProvider>
+  );
 }
 
 export default Form;

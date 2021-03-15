@@ -1,25 +1,19 @@
-import { useCallback } from 'react';
-import {
-  ValidateRule,
-  Wrapped,
-  ValidateResultFor,
-  ValidationContext,
-  ActionEnums,
-} from '../types';
+import { useCallback, MutableRefObject } from 'react';
+import { ValidateRule, Wrapped, FormContext, ActionEnums } from '../types';
 import isPromise from '@boty-design/utils/src/isPromise';
 import { FormActions } from '../types';
 
 function useValidator<V>(
   fieldName: keyof V,
   schema: {
-    [K in keyof V]?: Wrapped<ValidateRule<V[K], ValidationContext<V>>>;
+    [K in keyof V]?: Wrapped<ValidateRule<V[K], FormContext<V>>>;
   },
-  context: ValidationContext<V>
+  contextRef: MutableRefObject<FormContext<V>>
 ) {
   return (val: V) => {
-    console.log('validate');
+    const context = contextRef.current;
 
-    console.log(context.state.values);
+    // console.log(context.state.values);
     context.dispatch({
       type: ActionEnums.SET_ERRORS,
       payload: { [fieldName]: [] },
@@ -29,7 +23,7 @@ function useValidator<V>(
       return [];
     }
 
-    const rules: ValidateRule<V, ValidationContext<V>>[] = [].concat(
+    const rules: ValidateRule<V, FormContext<V>>[] = [].concat(
       schema[fieldName]
     );
 
