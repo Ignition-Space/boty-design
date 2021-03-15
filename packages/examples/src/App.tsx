@@ -30,6 +30,7 @@ function App() {
     color: 'red',
   };
 
+  console.log('render');
   return (
     <div className="App">
       <Button onClick={handlerSyncClick} loading={true}>
@@ -45,11 +46,38 @@ function App() {
         警告+自定义style
       </Button>
 
-      <Form initialValues={{ email: 1, username: 'boty', password: 123456 }}>
-        {(props) => (
+      <Form
+        initialValues={{ email: 1, username: 'boty', password: '123456' }}
+        validationSchema={{
+          password: [
+            (val, context) => {
+              return '密码饿2';
+            },
+            (val) => {
+              return new Promise((resolve) => {
+                if (val !== 'boty') {
+                  setTimeout(() => resolve('密码错误'), 500);
+                } else {
+                  resolve();
+                }
+              });
+            },
+          ],
+          username: (val, context) => {},
+        }}
+      >
+        {({ values, errors, validators, handleChange }) => (
           <div>
-            {props.values.password}
-            {props.values.email}
+            {errors.password}
+            <input
+              value={values.password}
+              onChange={(e) => {
+                handleChange.password(e.target.value);
+                validators.password(e.target.value);
+              }}
+            ></input>
+            {values.password}
+            {values.email}
           </div>
         )}
       </Form>

@@ -1,45 +1,20 @@
-import React, { Reducer, useReducer, ReactNode } from 'react';
+import React, { Reducer, useReducer, ReactNode, useMemo, useRef } from 'react';
 import invariant from 'invariant';
+import {
+  ValidateRule,
+  Wrapped,
+  FormErrors,
+  FormTouched,
+  FormValidators,
+  FormActions,
+  ActionEnums,
+  ValidationContext,
+  FormValidating,
+  FormChangeEvent,
+} from '../types';
+import useValidator from '../hooks/useValidator';
 type FormValues = {
   [key in string]: any;
-};
-
-enum ActionEnums {
-  SET_FIELD,
-  SET_ERRORS,
-}
-
-type Action<T, P> = { type: T; payload: P };
-
-export type FormActions =
-  | Action<ActionEnums.SET_ERRORS, Partial<FormErrors<FormValues>>>
-  | Action<ActionEnums.SET_FIELD, Partial<FormValues>>;
-
-/**
- * An object containing error messages whose keys correspond to FormValues.
- * Should always be an object of strings, but any is allowed to support i18n libraries.
- */
-export type FormErrors<FormValues> = {
-  [K in keyof FormValues]?: FormValues[K] extends any[]
-    ? FormValues[K][number] extends object // [number] is the special sauce to get the type of array's element. More here https://github.com/Microsoft/TypeScript/pull/21316
-      ? FormErrors<FormValues[K][number]>[] | string | string[]
-      : string | string[]
-    : FormValues[K] extends object
-    ? FormErrors<FormValues[K]>
-    : string;
-};
-
-/**
- * An object containing touched state of the form whose keys correspond to FormValues.
- */
-export type FormTouched<FormValues> = {
-  [K in keyof FormValues]?: FormValues[K] extends any[]
-    ? FormValues[K][number] extends object // [number] is the special sauce to get the type of array's element. More here https://github.com/Microsoft/TypeScript/pull/21316
-      ? FormTouched<FormValues[K][number]>[]
-      : boolean
-    : FormValues[K] extends object
-    ? FormTouched<FormValues[K]>
-    : boolean;
 };
 
 /**
@@ -49,12 +24,22 @@ type FormProps<V> = {
   initialValues: V;
   initialTouched?: FormTouched<V>;
   initialErrors?: FormErrors<V>;
+  validationSchema?: {
+    [K in keyof V]?: Wrapped<ValidateRule<V[K], ValidationContext<V>>>;
+  };
 };
 
-type FormChildrenProps<V> = {
+type FormChildrenProps<V> = FormStoreProps<V> & {
+  validators: FormValidators<V>;
+  handleChange: FormChangeEvent<V>;
+};
+
+type FormStoreProps<V> = {
   values: V;
   touched: FormTouched<V>;
+  validating: FormValidating<V>;
   errors: FormErrors<V>;
+  isValid: boolean;
 };
 
 function Form<Values extends FormValues>({
@@ -62,26 +47,24 @@ function Form<Values extends FormValues>({
   initialErrors,
   initialTouched,
   children,
+  validationSchema,
 }: FormProps<Values> & {
   children: (props: FormChildrenProps<Values>) => ReactNode | ReactNode;
 }) {
   const [state, dispatch] = useReducer<
-    Reducer<
-      {
-        values: Values;
-        touched: FormTouched<Values>;
-        errors: FormErrors<Values>;
-        isValid: boolean;
-      },
-      FormActions
-    >
+    Reducer<FormStoreProps<Values>, FormActions<Values>>
   >(
     (state, { type, payload }) => {
+      console.log('action dispatched', ActionEnums[type], payload);
+
       switch (type) {
         case ActionEnums.SET_ERRORS:
-          return state;
+          return { ...state, errors: { ...state.errors, ...payload } };
         case ActionEnums.SET_FIELD:
           return { ...state, values: { ...state.values, ...payload } };
+        case ActionEnums.SET_VALIDATING_FIELD: {
+          return { ...state };
+        }
         default:
           invariant(true, 'you provided an unkown action!');
       }
@@ -89,12 +72,48 @@ function Form<Values extends FormValues>({
     },
     {
       values: initialValues,
-      touched: initialTouched,
-      errors: initialErrors,
+      touched: {},
+      errors: { ...initialErrors },
+      validating: {},
       isValid: true,
     }
   );
-  return <div>{children(state)}</div>;
+
+  const validationContext = useRef<ValidationContext<Values>>({
+    state,
+    dispatch,
+  });
+
+  const validators = useMemo(() => {
+    const vals = {};
+
+    Object.keys(initialValues).map((fieldName) => {
+      const validator = useValidator<Values>(
+        fieldName,
+        validationSchema,
+        validationContext.current
+      );
+      vals[fieldName] = validator;
+    });
+    return vals;
+  }, [validationSchema]) as FormValidators<Values>;
+
+  const handleChange = useMemo(() => {
+    const handlers = {};
+    Object.keys(initialValues).map((fieldName) => {
+      handlers[fieldName] = (val) =>
+        dispatch({
+          type: ActionEnums.SET_FIELD,
+          payload: {
+            [fieldName]: val,
+          },
+        } as FormActions<Values>);
+    });
+
+    return handlers;
+  }, [initialValues]) as FormChangeEvent<Values>;
+
+  return <div>{children({ ...state, validators, handleChange })}</div>;
 }
 
 export default Form;

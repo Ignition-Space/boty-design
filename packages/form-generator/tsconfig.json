@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "lib/",
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationDir": "types/"
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
