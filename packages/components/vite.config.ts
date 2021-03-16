@@ -17,6 +17,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'boty-design',
+      formats:['es','umd','cjs']
     }
   }
 });

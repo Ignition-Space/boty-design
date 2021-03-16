@@ -7,7 +7,7 @@
  */
 import React, { useState } from 'react';
 import { Button } from '@boty-design/components';
-import { LoadingOutlined } from '@ant-design/icons';
+import { LoadingOutlined, CheckOutlined } from '@ant-design/icons';
 import { useFormItem } from '@boty-design/form-generator';
 import Form from '@boty-design/form-generator/src/components/Form';
 import Field from '@boty-design/form-generator/src/components/Field';
@@ -35,13 +35,13 @@ function App() {
   return (
     <div className="App">
       <Button onClick={handlerSyncClick} loading={true}>
-        异步按钮rrr
+        异步按钮
       </Button>
-      <Button onClick={handlerClick} icon={<LoadingOutlined />}>
+      <Button onClick={handlerClick}>
         按钮
       </Button>
       <Button shape="circle" icon={<LoadingOutlined />}></Button>
-      <Button colorSchemes="success">成功</Button>
+      <Button colorSchemes="success"  icon={<CheckOutlined />}>成功</Button>
       <Button colorSchemes="error">失败</Button>
       <Button colorSchemes="#f6cede" style={btnStyle}>
         警告+自定义style

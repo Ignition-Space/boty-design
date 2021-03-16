@@ -1,4 +1,4 @@
-# `components`
+# `boty-design/components`
 
 > TODO: description
 
