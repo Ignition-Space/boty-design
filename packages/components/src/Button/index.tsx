@@ -1,11 +1,3 @@
-/*
- * @Author: Cookie
- * @Date: 2021-02-27 16:14:15
- * @LastEditors: Cookie
- * @LastEditTime: 2021-03-05 15:09:29
- * @Description:
- */
-
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { LoadingOutlined } from '@ant-design/icons';
