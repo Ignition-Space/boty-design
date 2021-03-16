@@ -50,6 +50,7 @@ const App = () => (
 - 持续集成【Travis CI】 [https://travis-ci.org](https://travis-ci.org/)
 - 持续部署【 github Aciton】 [https://docs.github.com/cn/actions](https://docs.github.com/cn/actions)
 - npm管理【lerna】[https://github.com/lerna/lerna](https://github.com/lerna/lerna)
+- 组件生成【plop】[https://github.com/plopjs/plop](https://github.com/plopjs/plop)
 
 
 ## 待做清单
