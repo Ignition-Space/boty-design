@@ -8,7 +8,8 @@
     "dev": "lerna exec --scope \"@boty-design/examples\" yarn dev",
     "build": "lerna run --parallel --scope \"@boty-design/*\" build",
     "doc": "cross-env APP_ROOT=dumi dumi dev",
-    "doc:build": "cross-env APP_ROOT=dumi dumi build"
+    "doc:build": "cross-env APP_ROOT=dumi dumi build",
+    "generator": "lerna exec --scope \"@boty-design/scripts\" yarn generator"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",

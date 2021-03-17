@@ -1,0 +1,27 @@
+{
+  "name": "@boty-design/scripts",
+  "version": "1.0.0",
+  "description": "项目中的各种脚本",
+  "author": "gzg1023 <hotgzg@gmail.com>",
+  "homepage": "https://github.com/boty-design/boty-design#readme",
+  "license": "MIT",
+  "directories": {
+    "lib": "lib"
+  },
+  "publishConfig": {
+    "registry": "https://registry.yarnpkg.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boty-design/boty-design.git"
+  },
+  "scripts": {
+    "generator": "plop --plopfile generator.js"
+  },
+  "bugs": {
+    "url": "https://github.com/boty-design/boty-design/issues"
+  },
+  "devDependencies": {
+    "plop": "^2.7.4"
+  }
+}
