@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type Wrapped<T> = T | T[];
 
 export type ValidateRule<T, C = any> = (
@@ -18,6 +20,14 @@ export interface IFormItemAttributes<T = any> {
   validators: Wrapped<ValidateRule<T>>;
 }
 
+export type ExtractProps<ReactComponent> = ReactComponent extends React.FC<
+  infer P
+>
+  ? P
+  : ReactComponent extends React.Component<infer P>
+  ? P
+  : never;
+
 export enum ActionEnums {
   SET_FIELD,
   SET_ERRORS,
@@ -30,7 +40,7 @@ type Action<T, P> = { type: T; payload: P };
 export type FormActions<V = any> =
   | Action<ActionEnums.SET_ERRORS, Partial<FormErrors<V>>>
   | Action<ActionEnums.SET_FIELD, Partial<V>>
-  | Action<ActionEnums.SET_VALIDATING_FIELD, Partial<FormValidating<V>>>;
+  | Action<ActionEnums.SET_VALIDATING_FIELD, FormValidating<V>>;
 
 /**
  * An object containing error messages whose keys correspond to FormValues.
@@ -64,24 +74,36 @@ export type FormTouched<FormValues> = {
 };
 
 export type FormValidating<FormValues> = {
-  [K in keyof FormValues]?: FormValues[K] extends any[]
-    ? FormValues[K][number] extends object // [number] is the special sauce to get the type of array's element. More here https://github.com/Microsoft/TypeScript/pull/21316
-      ? FormValidating<FormValues[K][number]>[]
-      : boolean
-    : FormValues[K] extends object
-    ? FormValidating<FormValues[K]>
-    : boolean;
+  [K in keyof FormValues]: boolean;
 };
+
+// export type FormValidating<FormValues> = {
+//   [K in keyof FormValues]?: FormValues[K] extends any[]
+//     ? FormValues[K][number] extends object // [number] is the special sauce to get the type of array's element. More here https://github.com/Microsoft/TypeScript/pull/21316
+//       ? FormValidating<FormValues[K][number]>[]
+//       : boolean
+//     : FormValues[K] extends object
+//     ? FormValidating<FormValues[K]>
+//     : boolean;
+// };
 
 export type FormValidators<FormValues, C = FormContext<FormValues>> = {
   [K in keyof FormValues]: (val: FormValues[K]) => string[] | Promise<string[]>;
 };
 export type FormContext<V> = {
-  state: {
-    values: V;
-    touched: FormTouched<V>;
-    errors: FormErrors<V>;
-    isValid: boolean;
-  };
+  state: FormStoreProps<V>;
   dispatch: React.Dispatch<FormActions<V>>;
+};
+
+export type FormChildrenProps<V> = FormStoreProps<V> & {
+  validators: FormValidators<V>;
+  handleChange: FormChangeEvent<V>;
+};
+
+export type FormStoreProps<V> = {
+  values: V;
+  touched: FormTouched<V>;
+  validating: FormValidating<V>;
+  errors: FormErrors<V>;
+  isValid: boolean;
 };
