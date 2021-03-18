@@ -49,11 +49,11 @@ const {{name}} = (props: I{{name}}Props) => {
     );
 
     return (
-        <{{name}}
+        <div
             className={classes}
             style={customStyle}
         >
-        </{{name}}>
+        </div>
     );
 };
 

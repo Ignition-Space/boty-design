@@ -26,6 +26,13 @@ module.exports = function (plop) {
                 type: 'add',
                 path: '../components/src/{{name}}/index.less',
                 templateFile: './templates/components/template-component.css'
+            },
+            {
+                type: 'modify',
+                path: '../components/src/index.ts',
+                transform:(fileStr,enterObj)=>{
+                    return fileStr + '\n' + `export { default as ${enterObj.name} } from './${enterObj.name}';`
+                }
             }
         ]
     });
