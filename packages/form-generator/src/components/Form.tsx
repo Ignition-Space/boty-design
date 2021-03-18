@@ -19,9 +19,12 @@ import {
   FormContext,
   FormValidating,
   FormChangeEvent,
+  FormChildrenProps,
+  FormStoreProps,
 } from '../types';
 import useValidator from '../hooks/useValidator';
 import { FormContextProvider } from '../internals/context';
+
 type FormValues = {
   [key in string]: any;
 };
@@ -38,19 +41,6 @@ type FormProps<V> = {
   };
 };
 
-type FormChildrenProps<V> = FormStoreProps<V> & {
-  validators: FormValidators<V>;
-  handleChange: FormChangeEvent<V>;
-};
-
-type FormStoreProps<V> = {
-  values: V;
-  touched: FormTouched<V>;
-  validating: FormValidating<V>;
-  errors: FormErrors<V>;
-  isValid: boolean;
-};
-
 function Form<Values extends FormValues>({
   initialValues,
   initialErrors,
@@ -60,6 +50,14 @@ function Form<Values extends FormValues>({
 }: FormProps<Values> & {
   children: (props: FormChildrenProps<Values>) => ReactNode | ReactNode;
 }) {
+  const initialValidating = Object.keys(initialValues).reduce(
+    (prev, fieldName) => {
+      prev[fieldName] = false;
+      return prev;
+    },
+    {}
+  ) as FormValidating<Values>;
+
   const [state, dispatch] = useReducer<
     Reducer<FormStoreProps<Values>, FormActions<Values>>
   >(
@@ -72,7 +70,7 @@ function Form<Values extends FormValues>({
         case ActionEnums.SET_FIELD:
           return { ...state, values: { ...state.values, ...payload } };
         case ActionEnums.SET_VALIDATING_FIELD: {
-          return { ...state };
+          return { ...state, validating: { ...state.validating, ...payload } };
         }
         default:
           invariant(false, 'you provided an unkown action!');
@@ -82,7 +80,7 @@ function Form<Values extends FormValues>({
       values: initialValues,
       touched: {},
       errors: { ...initialErrors },
-      validating: {},
+      validating: initialValidating,
       isValid: true,
     }
   );

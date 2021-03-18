@@ -3,6 +3,17 @@ import { ValidateRule, Wrapped, FormContext, ActionEnums } from '../types';
 import isPromise from '@boty-design/utils/src/isPromise';
 import { FormActions } from '../types';
 
+function setValidating<V>(
+  field: keyof V,
+  status: boolean,
+  context: FormContext<V>
+) {
+  return context.dispatch({
+    type: ActionEnums.SET_VALIDATING_FIELD,
+    payload: { [field]: status },
+  } as FormActions<V>);
+}
+
 function useValidator<V>(
   fieldName: keyof V,
   schema: {
@@ -13,6 +24,7 @@ function useValidator<V>(
   return (val: V) => {
     const context = contextRef.current;
 
+    setValidating(fieldName, true, context);
     context.dispatch({
       type: ActionEnums.SET_ERRORS,
       payload: { [fieldName]: [] },
@@ -35,6 +47,7 @@ function useValidator<V>(
     ) as string[];
 
     if (!asyncResults.length) {
+      setValidating(fieldName, false, context);
       return syncResults.filter(Boolean);
     } else {
       return Promise.all(asyncResults).then(([...resolved]) => {
@@ -44,6 +57,9 @@ function useValidator<V>(
             [fieldName]: syncResults.concat(resolved).filter(Boolean),
           },
         } as FormActions<V>);
+
+        setValidating(fieldName, false, context);
+
         return syncResults.concat(resolved).filter(Boolean);
       });
     }
