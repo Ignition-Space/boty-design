@@ -67,9 +67,9 @@ interface BaseButtonProps {
    * @description 按钮颜色
    */
   colorSchemes?: string;
-   /**
-   * @description 危险类型
-   */
+  /**
+  * @description 危险类型
+  */
   danger?: boolean;
   /**
    * @description 按钮原生类型
@@ -142,6 +142,15 @@ const Button = (props: IButtonProps) => {
 
   const iconType = innerLoading ? 'loading' : icon;
 
+  const iconPrefixCls = getPrefixCls('btn-icon');
+
+  const iconClasses = classNames(
+    iconPrefixCls,
+    {
+      [`${iconPrefixCls}-${sizeCls}`]: sizeCls,
+    },
+    className
+  );
 
   const LoadingNode = () => {
     if (icon) return icon;
@@ -163,14 +172,6 @@ const Button = (props: IButtonProps) => {
     LoadingNode() && childrenNode ? `${selfPrefixCls}-has-icon` : ''
   );
 
-  const iconPrefixCls = getPrefixCls('btn-icon');
-  const iconClasses = classNames(
-    iconPrefixCls,
-    {
-      [`${iconPrefixCls}-${sizeCls}`]: sizeCls,
-    },
-    className
-  );
 
 
 

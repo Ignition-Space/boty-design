@@ -24,4 +24,4 @@ dumi/dist/
 dist/
 lib/
 
-.pnpm-lock.yaml
+pnpm-lock.yaml
