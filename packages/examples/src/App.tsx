@@ -1,8 +1,8 @@
 /*
  * @Author: Cookie
  * @Date: 2021-02-27 16:11:42
- * @LastEditors: Cookie
- * @LastEditTime: 2021-03-03 12:34:30
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-09-23 11:29:09
  * @Description:
  */
 import React, { useState } from 'react';
@@ -64,7 +64,7 @@ function App() {
               });
             },
           ],
-          username: (val, context) => {},
+          username: (val, context) => { },
         }}
       >
         {({ values, errors, validators, handleChange, validating }) => (

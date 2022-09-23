@@ -1,8 +1,8 @@
 /*
  * @Author: Cookie
  * @Date: 2021-03-02 13:47:42
- * @LastEditors: Cookie
- * @LastEditTime: 2021-03-09 17:12:00
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-09-23 10:52:25
  * @FilePath: /vite-react-boty-desing/packages/components/vite.config.ts
  * @Description:
  */
@@ -17,7 +17,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'boty-design',
-      formats:['es','umd','cjs']
+      formats: ['es', 'umd', 'cjs']
     }
   }
 });

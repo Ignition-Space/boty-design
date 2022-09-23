@@ -28,6 +28,8 @@ $ npm install @boty-design/components --save
 
 $ yarn add @boty-design/components
 
+$ pnpm i @boty-design/components
+
 ```
 
 ## 使用
