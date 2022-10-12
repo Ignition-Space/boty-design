@@ -9,22 +9,35 @@
     "build": "pnpm --filter @boty-design/ build",
     "doc": "cross-env APP_ROOT=dumi dumi dev",
     "doc:build": "cross-env APP_ROOT=dumi dumi build",
-    "generator": "lerna exec --scope \"@boty-design/scripts\" yarn generator"
+    "generator": "lerna exec --scope \"@boty-design/scripts\" yarn generator",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
   },
   "devDependencies": {
+    "@testing-library/react": "^13.4.0",
     "@types/classnames": "^2.3.0",
     "@types/node": "^18.7.18",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "@typescript-eslint/parser": "^5.40.0",
+    "@vitejs/plugin-react": "^2.1.0",
     "@vitejs/plugin-react-refresh": "^1.1.0",
     "classes": "^0.3.0",
     "classnames": "^2.3.2",
     "cross-env": "^7.0.3",
     "dumi": "^1.1.47",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "happy-dom": "^7.4.0",
     "lerna": "^5.5.2",
     "less": "^4.1.3",
+    "prettier": "^2.7.1",
     "typescript": "^4.8.3",
-    "vite": "^3.1.3"
+    "vite": "^3.1.3",
+    "vite-plugin-eslint": "^1.8.1",
+    "vitest": "^0.24.1"
   },
   "workspaces": [
     "packages/*"
