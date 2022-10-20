@@ -7,5 +7,5 @@
  */
 
 export const getPrefixCls = (prefixCls) => {
-    return prefixCls ? `boty-${prefixCls}` : 'boty';
+  return prefixCls ? `boty-${prefixCls}` : 'boty';
 };
