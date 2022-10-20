@@ -14,7 +14,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react-jsx"
   },
-  "include": ["./src", "packages/components/src/index.js", "packages/utils/types.ts", "packages/components/src/config", "packages/components/src/Button"]
+  "include": [
+    "./src",
+    "packages/components/src/index.js",
+    "packages/utils/types.ts",
+    "packages/components/src/config",
+    "packages/components/src/Button"
+  ],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

@@ -23,15 +23,21 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "test": "echo \"Error: run tests from root\" && exit 1",
+    "test": "vitest",
     "prepublish": "yarn build"
   },
   "bugs": {
     "url": "https://github.com/boty-design/boty-design/issues"
   },
   "dependencies": {
-    "@boty-design/utils": "workspace:*",
-    "@ant-design/icons": "^4.5.0"
+    "@ant-design/icons": "^4.5.0",
+    "@boty-design/utils": "workspace:*"
   },
-  "gitHead": "e672c3c1d4971d8b81c231c2adc79eca30db5ed8"
+  "gitHead": "e672c3c1d4971d8b81c231c2adc79eca30db5ed8",
+  "devDependencies": {
+    "@testing-library/react": "^13.4.0",
+    "happy-dom": "^7.4.0",
+    "vite-plugin-eslint": "^1.8.1",
+    "vitest": "^0.24.1"
+  }
 }

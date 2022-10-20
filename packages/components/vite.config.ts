@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 /*
  * @Author: Cookie
  * @Date: 2021-03-02 13:47:42
@@ -7,17 +8,22 @@
  * @Description:
  */
 import { defineConfig } from 'vite';
-import reactRefresh from '@vitejs/plugin-react-refresh';
-const path = require('path');
+import react from '@vitejs/plugin-react';
+import viteEslint from 'vite-plugin-eslint';
+import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [reactRefresh()],
+  plugins: [react(), viteEslint()],
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'),
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'boty-design',
       formats: ['es', 'umd', 'cjs']
     }
+  },
+  test: {
+    globals: true,
+    environment: 'happy-dom'
   }
 });
