@@ -68,7 +68,6 @@ importers:
       '@ant-design/icons': ^4.5.0
       '@boty-design/utils': workspace:*
       '@testing-library/react': ^13.4.0
-      '@vitejs/plugin-react': ^2.1.0
       happy-dom: ^7.4.0
       vite-plugin-eslint: ^1.8.1
       vitest: ^0.24.1
@@ -77,7 +76,6 @@ importers:
       '@boty-design/utils': link:../utils
     devDependencies:
       '@testing-library/react': 13.4.0
-      '@vitejs/plugin-react': 2.1.0
       happy-dom: 7.4.0
       vite-plugin-eslint: 1.8.1
       vitest: 0.24.1_happy-dom@7.4.0
@@ -2496,23 +2494,6 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.18.6_@babel+core@7.19.1
       '@rollup/pluginutils': 4.2.1
       react-refresh: 0.10.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /@vitejs/plugin-react/2.1.0:
-    resolution: {integrity: sha512-am6rPyyU3LzUYne3Gd9oj9c4Rzbq5hQnuGXSMT6Gujq45Il/+bunwq3lrB7wghLkiF45ygMwft37vgJ/NE8IAA==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    peerDependencies:
-      vite: ^3.0.0
-    dependencies:
-      '@babel/core': 7.19.1
-      '@babel/plugin-transform-react-jsx': 7.19.0_@babel+core@7.19.1
-      '@babel/plugin-transform-react-jsx-development': 7.18.6_@babel+core@7.19.1
-      '@babel/plugin-transform-react-jsx-self': 7.18.6_@babel+core@7.19.1
-      '@babel/plugin-transform-react-jsx-source': 7.18.6_@babel+core@7.19.1
-      magic-string: 0.26.7
-      react-refresh: 0.14.0
     transitivePeerDependencies:
       - supports-color
     dev: true
