@@ -39,5 +39,9 @@
     "happy-dom": "^7.4.0",
     "vite-plugin-eslint": "^1.8.1",
     "vitest": "^0.24.1"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }
